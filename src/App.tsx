@@ -13,6 +13,57 @@ export const App = () => {
     ],
     []
   );
+  const [todo, setTodo] = useState<TodoForm[]>([]);
+
+  // create onsubmit
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const activity = (
+      event.currentTarget.elements.namedItem("activity") as HTMLInputElement
+    ).value;
+    const price = (
+      event.currentTarget.elements.namedItem("price") as HTMLInputElement
+    ).value;
+    const type = (
+      event.currentTarget.elements.namedItem("type") as HTMLSelectElement
+    ).value;
+    const isRequired = (
+      event.currentTarget.elements.namedItem("isRequired") as HTMLInputElement
+    ).checked;
+    const accessibility = (
+      event.currentTarget.elements.namedItem(
+        "accessibility"
+      ) as HTMLInputElement
+    ).value;
+
+    setTodo((prev) => [
+      ...prev,
+      {
+        activity,
+        price,
+        type,
+        isRequired,
+        accessibility,
+      },
+    ]);
+  };
+
+  //create delete
+  const onDelete = (index: number) => {
+    setTodo((prev) => prev.filter((_, i) => i !== index)); //delete based on given index
+  };
+
+  // create local storage for persistence
+  useEffect(() => {
+    localStorage.setItem("to do list", JSON.stringify(todo));
+  }, [todo]);
+
+  // get local storage
+  useEffect(() => {
+    const savedTodo = JSON.parse(localStorage.getItem("todos") || "[]");
+    setTodo(savedTodo);
+  }, []);
   return (
     <div>
       <div className="container mx-auto bg-red-50">test</div>
