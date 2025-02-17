@@ -121,6 +121,8 @@ export const App = () => {
       <div className="flex flex-col gap-3">
         <p className="text-4xl text-center">To Do Lists</p>
         {todo.length > 0 ? (
+          <>
+          <div>Activities: {todo.length + 1}</div>
           <div className="border-2 bg-gray-100 p-4 rounded-2xl">
             <ol className="space-y-4">
               {todo.map((item, index) => (
@@ -155,6 +157,7 @@ export const App = () => {
               ))}
             </ol>
           </div>
+          </>
         ) : (
           <p className="text-center font-bold">No to do list</p>
         )}
