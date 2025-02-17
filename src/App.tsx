@@ -122,7 +122,7 @@ export const App = () => {
         <p className="text-4xl text-center">To Do Lists</p>
         {todo.length > 0 ? (
           <>
-          <div>Activities: {todo.length + 1}</div>
+          <div>Activities: {todo.length}</div>
           <div className="border-2 bg-gray-100 p-4 rounded-2xl">
             <ol className="space-y-4">
               {todo.map((item, index) => (
